@@ -77,6 +77,29 @@ app.get('/getposts/:id', (req, res) => {
   });
 });
 
+// 更新内容
+app.get('/updatepost/:id', (req, res) => {
+  let newTitle = 'update title'
+  let sql = `UPDATE posts SET title = '${newTitle}' WHERE id = ${req.params.id}`
+  db.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    res.json('删除成功...')
+  });
+});
+// 删除内容
+app.get('/deletepost/:id', (req, res) => {
+  let sql = `DELETE FROM posts WHERE id = ${req.params.id}`
+  db.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    res.json('更新成功...')
+  });
+});
+
+
+
+
 app.listen('3000',()=>{
   console.log('Server started on port 3000')
 })
